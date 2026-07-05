@@ -3,60 +3,70 @@
     "position": 1,
     "name": "Society",
     "creator": "Neomarbilan",
-    "verifier": "wPopoff"
+    "verifier": "wPopoff",
+    "thumbnail": "https://ytimg.com"
   },
   {
     "position": 2,
     "name": "Thinking Space II",
     "creator": "CairoX",
-    "verifier": "Zoink"
+    "verifier": "Zoink",
+    "thumbnail": "https://ytimg.com"
   },
   {
     "position": 3,
     "name": "Tidal Wave",
     "creator": "OniLink",
-    "verifier": "Zoink"
+    "verifier": "Zoink",
+    "thumbnail": "https://ytimg.com"
   },
   {
     "position": 4,
     "name": "Flamewall",
     "creator": "Narwall",
-    "verifier": "Cuatrocientos"
+    "verifier": "Cuatrocientos",
+    "thumbnail": "https://ytimg.com"
   },
   {
     "position": 5,
     "name": "Amethyst",
     "creator": "iMist",
-    "verifier": "wPopoff"
+    "verifier": "wPopoff",
+    "thumbnail": "https://ytimg.com"
   },
   {
     "position": 6,
     "name": "Nullscapes",
     "creator": "Kiba",
-    "verifier": "Zoink"
+    "verifier": "Zoink",
+    "thumbnail": "https://squarespace-cdn.com"
   },
   {
     "position": 7,
     "name": "ORBIT",
     "creator": "MindCap",
-    "verifier": "Zoink"
+    "verifier": "Zoink",
+    "thumbnail": "https://ytimg.com"
   },
   {
     "position": 8,
     "name": "Quanteuse processing",
     "creator": "Renn241",
-    "verifier": "Zoink"
+    "verifier": "Zoink",
+    "thumbnail": "https://ytimg.com"
   },
   {
     "position": 9,
     "name": "Every End",
     "creator": "MindCap",
-    "verifier": "Hqmy"
+    "verifier": "Hqmy",
+    "thumbnail": "https://ytimg.com"
   },
   {
     "position": 10,
     "name": "BOOBAWAMBA",
     "creator": "Akunakunn",
-    "verifier": "wPopoff"
-  },
-  {
+    "verifier": "wPopoff",
+    "thumbnail": "https://ytimg.com"
+  }
+]
