@@ -7,7 +7,6 @@
     <style>
         body { 
             font-family: 'Helvetica Neue', Arial, sans-serif; 
-            /* Стабильный и красивый фон Nullscapes на весь экран */
             background: #0a0a0a url('https://alphacoders.com') no-repeat center center fixed;
             background-size: cover;
             color: #fff; 
@@ -48,14 +47,14 @@
             backdrop-filter: blur(5px);
             display: flex;
             flex-direction: column;
-            gap: 12px; /* Расстояние между карточками */
+            gap: 12px;
         }
         .level-item { 
             display: flex; 
             justify-content: space-between; 
             align-items: center;
             padding: 15px 20px; 
-            border-radius: 10px; /* Закругляем каждую карточку отдельно */
+            border-radius: 10px; 
             background: rgba(25, 25, 25, 0.6);
             transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
         }
@@ -114,7 +113,8 @@
     <div class="list-container" id="demonlist"></div>
 
     <script>
-        const myTop10 = [
+        // Полностью рабочий список с твоими исправлениями для Лесоповала
+        const myTop11 = [
           { "position": 1, "name": "Society", "creator": "Neomarbilan", "verifier": "wPopoff", "color": "#2a2a2a" },
           { "position": 2, "name": "Thinking Space II", "creator": "CairoX", "verifier": "Zoink", "color": "#5a5a5a" },
           { "position": 3, "name": "Tidal Wave", "creator": "OniLink", "verifier": "Zoink", "color": "#0055ff" },
@@ -124,18 +124,17 @@
           { "position": 7, "name": "ORBIT", "creator": "MindCap", "verifier": "Zoink", "color": "#00ccff" },
           { "position": 8, "name": "Quanteuse processing", "creator": "Renn241", "verifier": "Zoink", "color": "#00ffaa" },
           { "position": 9, "name": "Every End", "creator": "MindCap", "verifier": "Hqmy", "color": "#3df2ff" },
-          { "position": 10, "name": "BOOBAWAMBA", "creator": "Akunakunn", "verifier": "wPopoff", "color": "#ff0055" }
-            { "position": 11, "name": "Lesopowal", "creator": "Cherryteam", "verifier": "Bacon8880", "color": "#00ff33" }
+          { "position": 10, "name": "BOOBAWAMBA", "creator": "Akunakunn", "verifier": "wPopoff", "color": "#ff0055" },
+          { "position": 11, "name": "Lesopowal", "creator": "cherryteam", "verifier": "Bacon", "color": "#00ff33" }
         ];
 
         const container = document.getElementById('demonlist');
-        myTop10.forEach(level => {
+        myTop11.forEach(level => {
             const item = document.createElement('div');
             item.className = 'level-item';
             
-            // Добавляем цветную линию-границу под цвет карточки и легкое свечение
             item.style.border = `2px solid ${level.color}`;
-            item.style.boxShadow = `0 0 10px ${level.color}22`; // 22 делает свечение мягким
+            item.style.boxShadow = `0 0 10px ${level.color}22`;
 
             const shortName = level.name.substring(0, 2).toUpperCase();
 
