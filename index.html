@@ -7,55 +7,62 @@
     <style>
         body { 
             font-family: 'Helvetica Neue', Arial, sans-serif; 
-            background: #0a0a0a;
+            /* Стабильный и красивый фон Nullscapes на весь экран */
+            background: #0a0a0a url('https://alphacoders.com') no-repeat center center fixed;
+            background-size: cover;
             color: #fff; 
             margin: 0;
             padding: 0; 
         }
         .header {
-            background: linear-gradient(135deg, #111 0%, #1a052e 100%);
+            background: linear-gradient(to bottom, rgba(10,10,10,0.2) 0%, rgba(10,10,10,0.85) 100%);
             padding: 90px 20px;
             text-align: center;
             border-bottom: 3px solid #ff1a43;
-            box-shadow: 0 0 30px rgba(255, 26, 67, 0.2);
+            box-shadow: 0 5px 30px rgba(255, 26, 67, 0.2);
         }
         h1 { 
             font-size: 3.5em; 
             margin: 0; 
             letter-spacing: 6px; 
-            text-shadow: 0 0 20px rgba(255, 26, 67, 0.6);
+            text-shadow: 0 0 25px rgba(255, 26, 67, 0.8);
             font-weight: 900;
             color: #fff;
         }
         .subtitle {
-            color: #888;
+            color: #ccc;
             font-size: 1.1em;
             margin-top: 15px;
             text-transform: uppercase;
             letter-spacing: 2px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
         }
         .list-container { 
             max-width: 800px; 
             margin: 40px auto; 
-            background: rgba(20, 20, 20, 0.95); 
-            padding: 10px; 
+            background: rgba(15, 15, 15, 0.85); 
+            padding: 15px; 
             border-radius: 14px; 
-            border: 1px solid #252525;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.8); 
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.9); 
+            backdrop-filter: blur(5px);
+            display: flex;
+            flex-direction: column;
+            gap: 12px; /* Расстояние между карточками */
         }
         .level-item { 
             display: flex; 
             justify-content: space-between; 
             align-items: center;
-            padding: 18px 20px; 
-            border-bottom: 1px solid #222; 
-            transition: background 0.2s, transform 0.2s;
+            padding: 15px 20px; 
+            border-radius: 10px; /* Закругляем каждую карточку отдельно */
+            background: rgba(25, 25, 25, 0.6);
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
         }
         .level-item:hover {
-            background: rgba(255,255,255,0.03);
+            background: rgba(25, 25, 25, 0.9);
             transform: translateX(5px);
         }
-        .level-item:last-child { border-bottom: none; }
         .level-info {
             display: flex;
             align-items: center;
@@ -64,14 +71,14 @@
         .level-badge {
             width: 80px;
             height: 45px;
-            border-radius: 8px;
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
             font-size: 0.9em;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.15);
         }
         .rank { 
             font-size: 1.4em;
@@ -87,7 +94,7 @@
         }
         .credits {
             font-size: 1em;
-            color: #666;
+            color: #888;
             text-align: right;
             line-height: 1.4;
         }
@@ -107,17 +114,16 @@
     <div class="list-container" id="demonlist"></div>
 
     <script>
-        // Твой личный, выверенный Топ-10 с цветовыми кодами вместо проблемных картинок
         const myTop10 = [
           { "position": 1, "name": "Society", "creator": "Neomarbilan", "verifier": "wPopoff", "color": "#2a2a2a" },
-          { "position": 2, "name": "Thinking Space II", "creator": "CairoX", "verifier": "Zoink", "color": "#4a4a4a" },
+          { "position": 2, "name": "Thinking Space II", "creator": "CairoX", "verifier": "Zoink", "color": "#5a5a5a" },
           { "position": 3, "name": "Tidal Wave", "creator": "OniLink", "verifier": "Zoink", "color": "#0055ff" },
           { "position": 4, "name": "Flamewall", "creator": "Narwall", "verifier": "Cuatrocientos", "color": "#ff5500" },
           { "position": 5, "name": "Amethyst", "creator": "iMist", "verifier": "wPopoff", "color": "#aa00ff" },
-          { "position": 6, "name": "Nullscapes", "creator": "Kiba", "verifier": "Zoink", "color": "#111111" },
+          { "position": 6, "name": "Nullscapes", "creator": "Kiba", "verifier": "Zoink", "color": "#222222" },
           { "position": 7, "name": "ORBIT", "creator": "MindCap", "verifier": "Zoink", "color": "#00ccff" },
           { "position": 8, "name": "Quanteuse processing", "creator": "Renn241", "verifier": "Zoink", "color": "#00ffaa" },
-          { "position": 9, "name": "Every End", "creator": "MindCap", "verifier": "Hqmy", "color": "#333333" },
+          { "position": 9, "name": "Every End", "creator": "MindCap", "verifier": "Hqmy", "color": "#3df2ff" },
           { "position": 10, "name": "BOOBAWAMBA", "creator": "Akunakunn", "verifier": "wPopoff", "color": "#ff0055" }
         ];
 
@@ -126,7 +132,10 @@
             const item = document.createElement('div');
             item.className = 'level-item';
             
-            // Берём первые две буквы уровня для красивой иконки-плашки
+            // Добавляем цветную линию-границу под цвет карточки и легкое свечение
+            item.style.border = `2px solid ${level.color}`;
+            item.style.boxShadow = `0 0 10px ${level.color}22`; // 22 делает свечение мягким
+
             const shortName = level.name.substring(0, 2).toUpperCase();
 
             item.innerHTML = `
