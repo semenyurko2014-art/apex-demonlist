@@ -90,7 +90,7 @@
     <div class="list-container" id="demonlist">Загрузка уровней...</div>
 
     <script>
-        fetch('levels.json')
+        fetch('./levels.json')
             .then(response => response.json())
             .then(data => {
                 const container = document.getElementById('demonlist');
