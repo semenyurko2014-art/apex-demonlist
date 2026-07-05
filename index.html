@@ -13,78 +13,87 @@
             padding: 0; 
         }
         .header {
-            background: linear-gradient(to bottom, rgba(10,10,10,0.4) 0%, rgba(10,10,10,1) 90%), url('https://squarespace-cdn.com') no-repeat center center;
-            background-size: cover;
-            padding: 120px 20px 40px 20px;
+            background: linear-gradient(135deg, #111 0%, #1a052e 100%);
+            padding: 90px 20px;
             text-align: center;
-            border-bottom: 2px solid #222;
+            border-bottom: 3px solid #ff1a43;
+            box-shadow: 0 0 30px rgba(255, 26, 67, 0.2);
         }
         h1 { 
             font-size: 3.5em; 
             margin: 0; 
-            letter-spacing: 4px; 
-            text-shadow: 0 0 20px rgba(255,255,255,0.2);
+            letter-spacing: 6px; 
+            text-shadow: 0 0 20px rgba(255, 26, 67, 0.6);
             font-weight: 900;
+            color: #fff;
         }
         .subtitle {
             color: #888;
             font-size: 1.1em;
-            margin-top: 10px;
+            margin-top: 15px;
             text-transform: uppercase;
             letter-spacing: 2px;
         }
         .list-container { 
             max-width: 800px; 
             margin: 40px auto; 
-            background: rgba(20, 20, 20, 0.9); 
-            padding: 20px; 
-            border-radius: 12px; 
+            background: rgba(20, 20, 20, 0.95); 
+            padding: 10px; 
+            border-radius: 14px; 
             border: 1px solid #252525;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.7); 
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8); 
         }
         .level-item { 
             display: flex; 
             justify-content: space-between; 
             align-items: center;
-            padding: 16px 12px; 
+            padding: 18px 20px; 
             border-bottom: 1px solid #222; 
-            transition: background 0.2s;
+            transition: background 0.2s, transform 0.2s;
         }
         .level-item:hover {
-            background: rgba(255,255,255,0.02);
+            background: rgba(255,255,255,0.03);
+            transform: translateX(5px);
         }
         .level-item:last-child { border-bottom: none; }
         .level-info {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
         }
-        .level-thumb {
-            width: 90px;
-            height: 50px;
-            border-radius: 6px;
-            object-fit: cover;
-            border: 1px solid #333;
-            background: #111;
+        .level-badge {
+            width: 80px;
+            height: 45px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9em;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+            border: 1px solid rgba(255,255,255,0.1);
         }
         .rank { 
-            font-size: 1.3em;
+            font-size: 1.4em;
             font-weight: bold; 
             color: #ffbc00; 
-            min-width: 45px;
+            min-width: 40px;
         }
         .level-name {
-            font-size: 1.15em;
+            font-size: 1.3em;
             font-weight: bold;
             color: #fff;
+            letter-spacing: 0.5px;
         }
         .credits {
-            font-size: 0.95em;
+            font-size: 1em;
             color: #666;
             text-align: right;
+            line-height: 1.4;
         }
         .credits span {
-            color: #aaa;
+            color: #ddd;
+            font-weight: 500;
         }
     </style>
 </head>
@@ -98,91 +107,38 @@
     <div class="list-container" id="demonlist"></div>
 
     <script>
-        // Твой личный, выверенный Топ-10 с картинками
-       const myTop10 = [
-          {
-            "position": 1,
-            "name": "Society",
-            "creator": "Neomarbilan",
-            "verifier": "wPopoff",
-            "thumbnail": "https://uncyc.org"
-          },
-          {
-            "position": 2,
-            "name": "Thinking Space II",
-            "creator": "CairoX",
-            "verifier": "Zoink",
-            "thumbnail": "https://wikimedia.org"
-          },
-          {
-            "position": 3,
-            "name": "Tidal Wave",
-            "creator": "OniLink",
-            "verifier": "Zoink",
-            "thumbnail": "https://wikimedia.org"
-          },
-          {
-            "position": 4,
-            "name": "Flamewall",
-            "creator": "Narwall",
-            "verifier": "Cuatrocientos",
-            "thumbnail": "https://wikimedia.org"
-          },
-          {
-            "position": 5,
-            "name": "Amethyst",
-            "creator": "iMist",
-            "verifier": "wPopoff",
-            "thumbnail": "https://wikimedia.org"
-          },
-          {
-            "position": 6,
-            "name": "Nullscapes",
-            "creator": "Kiba",
-            "verifier": "Zoink",
-            "thumbnail": "https://squarespace-cdn.com"
-          },
-          {
-            "position": 7,
-            "name": "ORBIT",
-            "creator": "MindCap",
-            "verifier": "Zoink",
-            "thumbnail": "https://wikimedia.org"
-          },
-          {
-            "position": 8,
-            "name": "Quanteuse processing",
-            "creator": "Renn241",
-            "verifier": "Zoink",
-            "thumbnail": "https://wikimedia.org"
-          },
-          {
-            "position": 9,
-            "name": "Every End",
-            "creator": "MindCap",
-            "verifier": "Hqmy",
-            "thumbnail": "https://wikimedia.org"
-          },
-          {
-            "position": 10,
-            "name": "BOOBAWAMBA",
-            "creator": "Akunakunn",
-            "verifier": "wPopoff",
-            "thumbnail": "https://wikimedia.org"
-          }
+        // Твой личный, выверенный Топ-10 с цветовыми кодами вместо проблемных картинок
+        const myTop10 = [
+          { "position": 1, "name": "Society", "creator": "Neomarbilan", "verifier": "wPopoff", "color": "#2a2a2a" },
+          { "position": 2, "name": "Thinking Space II", "creator": "CairoX", "verifier": "Zoink", "color": "#4a4a4a" },
+          { "position": 3, "name": "Tidal Wave", "creator": "OniLink", "verifier": "Zoink", "color": "#0055ff" },
+          { "position": 4, "name": "Flamewall", "creator": "Narwall", "verifier": "Cuatrocientos", "color": "#ff5500" },
+          { "position": 5, "name": "Amethyst", "creator": "iMist", "verifier": "wPopoff", "color": "#aa00ff" },
+          { "position": 6, "name": "Nullscapes", "creator": "Kiba", "verifier": "Zoink", "color": "#111111" },
+          { "position": 7, "name": "ORBIT", "creator": "MindCap", "verifier": "Zoink", "color": "#00ccff" },
+          { "position": 8, "name": "Quanteuse processing", "creator": "Renn241", "verifier": "Zoink", "color": "#00ffaa" },
+          { "position": 9, "name": "Every End", "creator": "MindCap", "verifier": "Hqmy", "color": "#333333" },
+          { "position": 10, "name": "BOOBAWAMBA", "creator": "Akunakunn", "verifier": "wPopoff", "color": "#ff0055" }
         ];
 
         const container = document.getElementById('demonlist');
         myTop10.forEach(level => {
             const item = document.createElement('div');
             item.className = 'level-item';
+            
+            // Берём первые две буквы уровня для красивой иконки-плашки
+            const shortName = level.name.substring(0, 2).toUpperCase();
+
             item.innerHTML = `
                 <div class="level-info">
                     <span class="rank">#${level.position}</span>
-                    <img class="level-thumb" src="${level.thumbnail}" alt="${level.name}">
+                    <div class="level-badge" style="background: ${level.color};">${shortName}</div>
                     <span class="level-name">${level.name}</span>
                 </div>
-                <div class="credits">by <span>${level.creator}</span><br>Ver. by <span>${level.verifier}</span></div>
+                <div class="credits">
+                    by <span>${level.creator}</span><br>
+                    Ver. by <span>${level.verifier}</span>
+                </div>
             `;
             container.appendChild(item);
         });
