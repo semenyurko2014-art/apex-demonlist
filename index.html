@@ -5,47 +5,187 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apex Demonlist</title>
     <style>
-        body { font-family: Arial, sans-serif; background: #0a0a0a; color: #fff; margin: 0; padding: 0; }
-        .header { background: linear-gradient(to bottom, rgba(10,10,10,0.4), #0a0a0a), url('https://squarespace-cdn.com') center; background-size: cover; padding: 100px 20px 40px; text-align: center; border-bottom: 2px solid #222; }
-        h1 { font-size: 3.5em; margin: 0; letter-spacing: 4px; font-weight: 900; }
-        .subtitle { color: #888; font-size: 1.1em; margin-top: 10px; text-transform: uppercase; letter-spacing: 2px; }
-        .list-container { max-width: 800px; margin: 40px auto; background: rgba(20, 20, 20, 0.9); padding: 20px; border-radius: 12px; border: 1px solid #252525; }
-        .level-item { display: flex; justify-content: space-between; align-items: center; padding: 16px 12px; border-bottom: 1px solid #222; }
-        .level-info { display: flex; align-items: center; gap: 15px; }
-        .level-thumb { width: 90px; height: 50px; border-radius: 6px; object-fit: cover; border: 1px solid #333; }
-        .rank { font-size: 1.3em; font-weight: bold; color: #ffbc00; min-width: 45px; }
-        .level-name { font-size: 1.15em; font-weight: bold; }
-        .credits { font-size: 0.95em; color: #666; text-align: right; }
-        .credits span { color: #aaa; }
+        body { 
+            font-family: 'Helvetica Neue', Arial, sans-serif; 
+            background: #0a0a0a;
+            color: #fff; 
+            margin: 0;
+            padding: 0; 
+        }
+        .header {
+            background: linear-gradient(to bottom, rgba(10,10,10,0.4) 0%, rgba(10,10,10,1) 90%), url('https://squarespace-cdn.com') no-repeat center center;
+            background-size: cover;
+            padding: 120px 20px 40px 20px;
+            text-align: center;
+            border-bottom: 2px solid #222;
+        }
+        h1 { 
+            font-size: 3.5em; 
+            margin: 0; 
+            letter-spacing: 4px; 
+            text-shadow: 0 0 20px rgba(255,255,255,0.2);
+            font-weight: 900;
+        }
+        .subtitle {
+            color: #888;
+            font-size: 1.1em;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .list-container { 
+            max-width: 800px; 
+            margin: 40px auto; 
+            background: rgba(20, 20, 20, 0.9); 
+            padding: 20px; 
+            border-radius: 12px; 
+            border: 1px solid #252525;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7); 
+        }
+        .level-item { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            padding: 16px 12px; 
+            border-bottom: 1px solid #222; 
+            transition: background 0.2s;
+        }
+        .level-item:hover {
+            background: rgba(255,255,255,0.02);
+        }
+        .level-item:last-child { border-bottom: none; }
+        .level-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .level-thumb {
+            width: 90px;
+            height: 50px;
+            border-radius: 6px;
+            object-fit: cover;
+            border: 1px solid #333;
+            background: #111;
+        }
+        .rank { 
+            font-size: 1.3em;
+            font-weight: bold; 
+            color: #ffbc00; 
+            min-width: 45px;
+        }
+        .level-name {
+            font-size: 1.15em;
+            font-weight: bold;
+            color: #fff;
+        }
+        .credits {
+            font-size: 0.95em;
+            color: #666;
+            text-align: right;
+        }
+        .credits span {
+            color: #aaa;
+        }
     </style>
 </head>
 <body>
+
     <div class="header">
         <h1>APEX DEMONLIST</h1>
         <div class="subtitle">Персональный топ сложнейших уровней Geometry Dash</div>
     </div>
-    <div class="list-container" id="demonlist">Загрузка уровней...</div>
+
+    <div class="list-container" id="demonlist"></div>
+
     <script>
-        fetch('./levels.json')
-            .then(res => res.json())
-            .then(data => {
-                const container = document.getElementById('demonlist');
-                container.innerHTML = '';
-                data.forEach(level => {
-                    const item = document.createElement('div');
-                    item.className = 'level-item';
-                    item.innerHTML = `
-                        <div class="level-info">
-                            <span class="rank">#${level.position}</span>
-                            <img class="level-thumb" src="${level.thumbnail || ''}" alt="${level.name}">
-                            <span class="level-name">${level.name}</span>
-                        </div>
-                        <div class="credits">by <span>${level.creator}</span><br>Ver. by <span>${level.verifier}</span></div>
-                    `;
-                    container.appendChild(item);
-                });
-            })
-            .catch(() => { document.getElementById('demonlist').innerText = 'Ошибка загрузки топа.'; });
+        // Твой личный, выверенный Топ-10 с картинками
+        const myTop10 = [
+          {
+            "position": 1,
+            "name": "Society",
+            "creator": "Neomarbilan",
+            "verifier": "wPopoff",
+            "thumbnail": "https://ytimg.com"
+          },
+          {
+            "position": 2,
+            "name": "Thinking Space II",
+            "creator": "CairoX",
+            "verifier": "Zoink",
+            "thumbnail": "https://ytimg.com"
+          },
+          {
+            "position": 3,
+            "name": "Tidal Wave",
+            "creator": "OniLink",
+            "verifier": "Zoink",
+            "thumbnail": "https://ytimg.com"
+          },
+          {
+            "position": 4,
+            "name": "Flamewall",
+            "creator": "Narwall",
+            "verifier": "Cuatrocientos",
+            "thumbnail": "https://ytimg.com"
+          },
+          {
+            "position": 5,
+            "name": "Amethyst",
+            "creator": "iMist",
+            "verifier": "wPopoff",
+            "thumbnail": "https://ytimg.com"
+          },
+          {
+            "position": 6,
+            "name": "Nullscapes",
+            "creator": "Kiba",
+            "verifier": "Zoink",
+            "thumbnail": "https://squarespace-cdn.com"
+          },
+          {
+            "position": 7,
+            "name": "ORBIT",
+            "creator": "MindCap",
+            "verifier": "Zoink",
+            "thumbnail": "https://ytimg.com"
+          },
+          {
+            "position": 8,
+            "name": "Quanteuse processing",
+            "creator": "Renn241",
+            "verifier": "Zoink",
+            "thumbnail": "https://ytimg.com"
+          },
+          {
+            "position": 9,
+            "name": "Every End",
+            "creator": "MindCap",
+            "verifier": "Hqmy",
+            "thumbnail": "https://ytimg.com"
+          },
+          {
+            "position": 10,
+            "name": "BOOBAWAMBA",
+            "creator": "Akunakunn",
+            "verifier": "wPopoff",
+            "thumbnail": "https://ytimg.com"
+          }
+        ];
+
+        const container = document.getElementById('demonlist');
+        myTop10.forEach(level => {
+            const item = document.createElement('div');
+            item.className = 'level-item';
+            item.innerHTML = `
+                <div class="level-info">
+                    <span class="rank">#${level.position}</span>
+                    <img class="level-thumb" src="${level.thumbnail}" alt="${level.name}">
+                    <span class="level-name">${level.name}</span>
+                </div>
+                <div class="credits">by <span>${level.creator}</span><br>Ver. by <span>${level.verifier}</span></div>
+            `;
+            container.appendChild(item);
+        });
     </script>
 </body>
 </html>
